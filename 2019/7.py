@@ -1,8 +1,10 @@
+from collections import defaultdict
 from itertools import permutations
 from lib.Intcode import Intcode
 
 with open("data/7.txt") as f:
     program = list(map(int, f.readline().split(",")))
+
 
 # print(program)
 computer = Intcode(program, False)

@@ -17,16 +17,16 @@ def main():
     program = initial.copy()
     program[1] = 12
     program[2] = 2
-    a = Intcode(program)
-    print(a.run([0]))
+    a = Intcode(program, None)
+    print(a.run(0))
 
     for x in range(100):
         for y in range(100):
             program = initial.copy()
             program[1] = x
             program[2] = y
-            a = Intcode(program)
-            result = a.run([0])
+            a = Intcode(program, None)
+            result = a.run(0)['program']
             if result == 19690720:
                 print(100 * x + y)
                 return

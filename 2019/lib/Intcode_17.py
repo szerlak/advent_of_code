@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 from copy import copy
 
 
@@ -63,13 +63,25 @@ class Intcode:
         new_computer.program = copy(self.program)
         return new_computer
 
-    def run(self, input=None):
-        self.input = input
+    def set_input(self, input=[]):
+        self.input=deque(input)
+
+    def set_data(self, data=""):
+        commands = []
+        for line in data.splitlines():
+            commands += map(ord, line)
+            commands.append(ord("\n"))
+
+        self.input = deque(commands)
+
+    def run(self, input=[]):
+        if input:
+            self.input = deque(input)
 
         while True:
             opcode = self.get_opcode()
             if opcode == 4:
-                self.log("_OUTPUT", self.cursor)
+                # print("_OUTPUT", self.cursor)
                 output = self.get_value(1)
                 self.cursor += 2
                 return output
@@ -118,14 +130,16 @@ class Intcode:
 
     def _INPUT(self):
         self.log("_INPUT", self.cursor)
-        if self.input is None:
+        # print("_INPUT", self.cursor)
+        if not self.input:
             raise NoInputException
-        self.set_value(1, self.input)
-        self.input = None
+        self.set_value(1, self.input.popleft())
+        # self.input = None
         self.cursor += 2
 
     def _OUTPUT(self):
         self.log("_OUTPUT", self.cursor)
+        # print("_OUTPUT", self.cursor)
         output = self.get_value(1)
         self.cursor += 2
         return output
