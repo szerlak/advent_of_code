@@ -1,10 +1,9 @@
 from collections import Counter
 
-# data = [line.strip() for line in open('6.txt')]
 with open("6.txt", "r") as f:
     data = f.read().split("\n\n")
 
-# ### PART 1
+# ####### Part 1 ##########
 result_1 = 0
 for block in data:
     c = Counter()
@@ -15,7 +14,7 @@ for block in data:
 print(result_1)
 
 
-# ### Part 2
+# ####### Part 2 ##########
 result_2 = 0
 for block in data:
     c = Counter()
