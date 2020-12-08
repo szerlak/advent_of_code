@@ -16,3 +16,10 @@ def get_data(date):
 
 def print_result(result, stage):
     print("Star %s: %s" % (stage, result))
+
+
+def multiply(values):
+    result = 1
+    for value in values:
+        result *= value
+    return result

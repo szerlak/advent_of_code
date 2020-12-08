@@ -1,5 +1,5 @@
 from itertools import combinations
-from operator import mul
+from common import multiply
 
 data = [line.strip().split("x") for line in open("data.txt", "r")]
 for idx, line in enumerate(data):
@@ -7,7 +7,7 @@ for idx, line in enumerate(data):
 
 
 def paper(package):
-    sides = [mul(*side) for side in combinations(package, 2)]
+    sides = [multiply(side) for side in combinations(package, 2)]
     return 2 * sum(sides) + min(sides)
 
 

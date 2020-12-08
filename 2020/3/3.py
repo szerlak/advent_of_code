@@ -1,5 +1,4 @@
-from functools import reduce
-from operator import mul
+from common import multiply
 
 data = [line.strip() for line in open("data.txt", "r")]
 
@@ -16,5 +15,5 @@ for dx, dy in slopes:
     solutions.append(count)
 
 print(solutions[0])
-print(reduce(mul, solutions))
+print(multiply(solutions))
 
