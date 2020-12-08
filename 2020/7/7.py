@@ -36,10 +36,7 @@ print(len(solution) - 1)
 # ####### Part 2 ##########
 @lru_cache
 def sum_bags(bag):
-    counter = 1
-    for count, item in contains_dict[bag]:
-        counter += count * sum_bags(item)
-    return counter
+    return 1 + sum(count * sum_bags(item) for count, item in contains_dict[bag])
 
 
 print(sum_bags(("shiny", "gold")) - 1)
